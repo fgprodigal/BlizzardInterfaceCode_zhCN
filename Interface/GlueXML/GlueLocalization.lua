@@ -11,6 +11,9 @@ function LocalizeFrames()
 	PatchDownloadLogo:SetTexture("Interface\\Glues\\Common\\Glues-WoW-ChineseCCLogo");
 	RealmWizardLogo:SetTexture("Interface\\Glues\\Common\\Glues-WoW-ChineseCCLogo");
 	
+	CHARACTER_SELECT_LOGOS[2] = "Interface\\Glues\\Common\\Glues-WoW-ChineseWotLKLogo";
+	CHARACTER_SELECT_LOGOS[3] = "Interface\\Glues\\Common\\Glues-WoW-ChineseCCLogo";
+
 	CharacterSelectCharacterFrame:SetHeight(650);
 	CharacterCreateNameEdit:SetMaxLetters(12);
 	CharacterCreateLogo:SetWidth(241);
@@ -28,14 +31,10 @@ function LocalizeFrames()
 	-- Hide save username button
 	AccountLoginSaveAccountName:Hide();
 	AccountLoginSaveAccountNameText:Hide();
-	SAVE_ACCOUNT_BUTTON_HIDDEN = true;
 
 	-- Fix a spacing issue in the Matrix Security Frame
 	SecurityMatrixKeypadDirections:SetPoint("TOPLEFT", SecurityMatrixFrame, "TOPRIGHT", 4, 0);
 
-   	-- Hide the "Show Launcher" button in this locale
-    AccountLoginShowLauncher:Hide();
-	
 	-- fix the credits screen
 	CreditsArtInfo[3] = {};
 	CreditsArtInfo[3][1] = { file="ColdarraNexTGA", w=1024, h=512, offsetx=0, offsety=0, maxAlpha=0.7 };

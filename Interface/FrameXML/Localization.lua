@@ -12,9 +12,6 @@ function LocalizeFrames()
 	-- Hide profanity checkbox
 	-- UIOptionsFrameCheckButton5:Hide();
 
-	-- Adjust friends frame title
-	FriendsFrameTitleText:SetPoint("TOP", "FriendsFrame", "TOP", 0, -15);
-
 	-- Adjust text in character and friends frame tabs
 	for i=1, (CharacterFrame.numTabs or 0) do
 		local tabName = "CharacterFrameTab"..i;
