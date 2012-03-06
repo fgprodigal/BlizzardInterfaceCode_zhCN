@@ -199,6 +199,8 @@ function CharacterSelect_OnHide(self)
 		DeclensionFrame:Hide();
 	end
 	SERVER_SPLIT_STATE_PENDING = -1;
+	
+	StarterEditionPopUp:Hide();
 end
 
 function CharacterSelect_SaveCharacterOrder()
@@ -863,6 +865,14 @@ function AccountUpgradePanel_Update(isExpanded)
 		CharacterSelectLogo:Hide();
 	end
 
+	--We don't want to show the upgrade panel is Asian countries for now.
+	if ( NEVER_SHOW_UPGRADE ) then
+		CharSelectAccountUpgradePanel:Hide();
+		CharSelectAccountUpgradeButton:Hide();
+		CharSelectAccountUpgradeMiniPanel:Hide();
+		StarterEditionPopUp:Hide();
+		return;
+	end
 
 	if ( not CanUpgradeExpansion() or not ACCOUNT_UPGRADE_FEATURES[tag] ) then
 		CharSelectAccountUpgradePanel:Hide();
@@ -871,6 +881,7 @@ function AccountUpgradePanel_Update(isExpanded)
 	else
 		local featureTable = ACCOUNT_UPGRADE_FEATURES[tag];
 		CharSelectAccountUpgradeButton:Show();
+		StarterEditionPopUp:Show();
 		if ( isExpanded ) then
 			CharSelectAccountUpgradePanel:Show();
 			CharSelectAccountUpgradeMiniPanel:Hide();

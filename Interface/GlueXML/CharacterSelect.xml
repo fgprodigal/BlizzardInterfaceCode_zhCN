@@ -1069,9 +1069,9 @@
 					<AbsDimension x="255" y="60"/>
 				</Size>
 				<Anchors>
-					<Anchor point="BOTTOMLEFT" relativeTo="CharacterSelectAddonsButton" relativePoint="TOPLEFT">
+					<Anchor point="TOP" relativeTo="CharacterSelectLogo" relativePoint="BOTTOM">
 						<Offset>
-							<AbsDimension x="0" y="25"/>
+							<AbsDimension x="0" y="-50"/>
 						</Offset>
 					</Anchor>
 				</Anchors>

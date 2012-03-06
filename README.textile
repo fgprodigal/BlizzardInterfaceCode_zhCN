@@ -1,0 +1,271 @@
+h2. Interface changed from 40200 to 40300:
+* UI.xsd: new boolean attribute named "reverseFill"
+
+* API: BNGetFriendInfo returns now arg13, arg14, arg15 named isRIDFriend, messageTime and canSoR
+* API: CalendarEventGetNumInvites returns arg2 (1nil) called namesReady
+* API: CanReplaceGuildMaster returns hasImpeachFrame (1nil)
+* API: CanTransmogrifyItemWithItem(target item link/target item id/target item name, source item link/source item id/source item name) returns canBeTransmogrified, failReason
+* API: ClearBattlemaster()
+* API: ClearTransmogrifySlot(slotId)
+* API: ClickTransmogrifySlot(slotId)
+* API: GetAccountExpansionLevel may be removed and replaced with GetExpansionLevel
+* API: GetAuctionItemInfo returns has arg7 (INSERTED, string) called levelColHeader
+* API: GetAverageItemLevel() returns arg2 (number) named avgItemLevelEquipped
+* API: GetBackpackCurrencyInfo(index) returns arg4 (INSERTED, number) currencyID
+* API: GetBattlefieldStatus returns arg9 (1nil) named waitingOnOtherActivity
+* API: GetContainerItemInfo returns arg8 (1nil) named isFiltered (in conjuction with item searching)
+* API: GetDisplayedAllyFrames() returns arg1 (string) named groupType (i.e. "party", "raid", ...)
+* API: GetGuildRosterInfo returns arg15 (1nil) called canSoR
+* API: GetInventoryItemsForSlot added par2 and par3 named itemTable (i.e. table to populate with valid items for given slot) and category (i.e. "transmogrify")
+* API: GetItemTransmogrifyInfo(item link/item id/item name) returns canBeChanged, noChangeReason, canBeSource, noSourceReason
+* API: GetLFGDungeonEncounterInfo(dungeonID, index) returns arg1 (string), arg2 (string) and arg3 (1nil) named bossName, texture and isKilled
+* API: GetLFGDungeonNumEncounters(dungeonID) returns arg1 (number) and arg2 (number) named numEncounters and numCompleted
+* API: GetMaxBattlefieldID() returns arg1 (number)
+* API: GetOverrideSpellPowerByAP() returns arg1 (1nil)
+* API: GetPartyLFGID returns dungeonID
+* API: GetProfessionInfo returns arg9 (number) and arg10 (number) named specializationIndex and specializationOffset
+* API: GetRestrictedAccountData() returns arg3 (number) called profCap
+* API: GetTrackingInfo now returns arg5 (1nil) named nested
+* API: GetTransmogrifyCost() returns cost, numChanges
+* API: GetTransmogrifySlotInfo(slotId) returns isTransmogrified, canTransmogrify, cannotTransmogrifyReason, hasPending, hasUndo
+* API: GetWorldPVPQueueStatus returns arg4 (number) called timeleft (instead of using arg4 from GetWorldPVPQueueStatus(1))
+* API: Is64BitClient() added and returns 1nil
+* API: IsEveryoneAssistant() returns arg1 (1nil)
+* API: PlaySoundKitID(index, channel, bool) for example PlaySoundKitID(25477, "SFX", false) or PlaySoundKitID(25478) like in Timer.lua
+* API: SetLootMethod(type, name[, bool]) now has arg3 (1nil) check UnitPopup for details
+* API: string.rep("string", number) to repeat a string number of times
+* API: UninviteUnit(name, [reason, [bool]]) now has arg3 (1nil) check UnitPopup for details
+* API: UnitBuff now returns arg9 (1nil) named canStealOrPurge (from earlier isStealable, i.e. now also checks if it can be purged)
+
+* FrameXML API: CombatLog_String_PowerType now has par2 and par3 named amount and alternatePowerType (for energizes, drains, leeches)
+* FrameXML API: ToggleLFRParentFrame is removed
+* FrameXML API: TransmogrifyItemFlyout_GetItems(slot, itemTable)
+* FrameXML: ITEM_SEARCHBAR_LIST is a table of all editBoxes that are used for searching
+* FrameXML: MAELSTROM_ZONES_LEVELS table contains list of all the Maelstrom zone level ranges
+* FrameXML: MainMenuBarMicroButtons finally use MICRO_BUTTONS (global table) to traverse the micro buttons, about time!
+* FrameXML: Minimap has new global constants HUNTER_TRACKING and TOWNSFOLK
+* FrameXML: New code for ScrollOfResurrection.lua
+* FrameXML: new font named NumberFontNormalGray inherits from NumberFont_Outline_Med, has been added
+* FrameXML: New hyperlink called "journal" has been added (linking journal pages?)
+* FrameXML: Several SecureGroupHeaders.lua changes, some involving enchanting of weapons in combat apparently
+* FrameXML: The EclipseBarFrame will check maxPower for 0 to avoid dividing by zero (since LUA now can't divide by zero, have to update your eclipse addons guys)
+
+* UI: Can now place a raid target marker using the command /tm index unit and /tm 0 to unset, unit is optional (fallback to target)
+* UI: Durability frame now considers left and right weapons/shields/ranged
+* UI: Game Master Survey makes igCharacterInfoOpen/Close sounds when shown and hidden, checkboxes also play igMainMenuOptionCheckBoxOn when toggles
+* UI: Guild Bank is slightly wider
+* UI: Inventory, Bank and Guild Bank support the searching in inventory feature
+* UI: Placing and clearing world markers can be done using / and /
+* UI: Reforging has gotten a facelift
+* UI: The default Away and Busy messages changed back to classic "AFK" and "DND"
+* UI: The Dressup frame and the Auction Dressup model have been removed (hello there, dressing room addons -check out ModelFrames.lua as it now handles these models and all others in general)
+* UI: The Encounter Journal is now it's own internal addon, supporting Load on Demand (won't load when you login into the game, saving some loading time)
+* UI: The LFR frame is a part of the friends frame dialog (added the tab, right of the channel tab)
+* UI: The Macro frame prioritize character spells in the icon selection
+
+h2. Events added:
+* INVENTORY_SEARCH_UPDATE
+* MODIFIER_STATE_CHANGED
+* TRANSMOGRIFY_BIND_CONFIRM
+* TRANSMOGRIFY_CLOSE
+* TRANSMOGRIFY_SUCCESS
+* TRANSMOGRIFY_UPDATE
+* VOID_DEPOSIT_WARNING
+* VOID_STORAGE_CONTENTS_UPDATE
+* VOID_STORAGE_DEPOSIT_UPDATE
+* VOID_STORAGE_UPDATE
+* VOID_TRANSFER_DONE
+
+h2. Local variables now made into globals:
+* GUILD_REWARDS_BUTTON_HEIGHT
+* GUILD_REWARDS_BUTTON_OFFSET
+* SPELL_POWER_ALTERNATE_POWER
+
+h2. New global constants:
+* ACHIEVEMENTUI_CRITERIACHECKWIDTH
+* ALL_ASSIST_DESCRIPTION
+* ALL_ASSIST_LABEL
+* ALL_ASSIST_LABEL_LONG
+* ALL_ASSIST_NOT_LEADER_ERROR
+* BINDING_NAME_EXTRAACTIONBUTTON1
+* BNET_REPORT_ABUSE_BUTTON_SHORT
+* BOSS_INFO_STRING
+* CHAT_TRIAL_RESTRICTED_NOTICE
+* DEFAULT_READY_CHECK_STAY_TIME
+* DRAG_MODEL
+* DRAG_MODEL_TOOLTIP
+* DUNGEON_FLOOR_DRAGONSOUL0
+* DUNGEON_FLOOR_DRAGONSOUL1
+* DUNGEON_FLOOR_DRAGONSOUL2
+* DUNGEON_FLOOR_DRAGONSOUL3
+* DUNGEON_FLOOR_DRAGONSOUL4
+* DUNGEON_FLOOR_DRAGONSOUL5
+* DUNGEON_FLOOR_DRAGONSOUL6
+* DUNGEON_FLOOR_ENDTIME0
+* DUNGEON_FLOOR_ENDTIME1
+* DUNGEON_FLOOR_ENDTIME2
+* DUNGEON_FLOOR_ENDTIME3
+* DUNGEON_FLOOR_ENDTIME4
+* DUNGEON_FLOOR_ENDTIME5
+* DUNGEON_FLOOR_HOUROFTWILIGHT0
+* DUNGEON_FLOOR_HOUROFTWILIGHT1
+* DUNGEON_FLOOR_WELLOFETERNITY
+* ENTER_EMAIL
+* ENTER_EMAIL_OR_CHARACTER
+* ERR_BATTLEGROUND_DUPE_QUEUE
+* ERR_DIFFICULTY_DISABLED_IN_LFG
+* ERR_GUILD_LEADER_REPLACED
+* ERR_GUILD_REP_TOO_LOW
+* ERR_PARENTAL_CONTROLS_CHAT_MUTED
+* ERR_TRANSMOGRIFY_CANT_EQUIP
+* ERR_TRANSMOGRIFY_INVALID_DESTINATION
+* ERR_TRANSMOGRIFY_INVALID_ITEM_TYPE
+* ERR_TRANSMOGRIFY_INVALID_SOURCE
+* ERR_TRANSMOGRIFY_LEGENDARY
+* ERR_TRANSMOGRIFY_MISMATCH
+* ERR_TRANSMOGRIFY_NOT_EQUIPPED
+* ERR_TRANSMOGRIFY_NOT_SOULBOUND
+* ERR_TRANSMOGRIFY_SAME_APPEARANCE
+* ERR_TRANSMOGRIFY_SAME_ITEM
+* ERR_VOID_DEPOSIT_FULL
+* ERR_VOID_STORAGE_BAG
+* ERR_VOID_STORAGE_CHARGES
+* ERR_VOID_STORAGE_CONJURED
+* ERR_VOID_STORAGE_DURATION
+* ERR_VOID_STORAGE_HOLIDAY
+* ERR_VOID_STORAGE_LOOT
+* ERR_VOID_STORAGE_MAIL
+* ERR_VOID_STORAGE_QUEST
+* ERR_VOID_STORAGE_REPAIR
+* ERR_VOID_STORAGE_STACKABLE
+* ERR_VOID_STORAGE_UNBOUND
+* ERR_VOID_STORAGE_UNIQUE
+* ERR_VOID_STORAGE_WRAPPED
+* ERR_VOID_TRANSFER_INTERNAL_ERROR
+* ERR_VOID_TRANSFER_INV_FULL
+* ERR_VOID_TRANSFER_STORAGE_FULL
+* ERR_VOID_WITHDRAW_FULL
+* FIND_RAID
+* GRAPHICS_OPTIONS_UNAVAILABLE
+* GUILD_FACTION_TITLE_EXALTED_FEMALE
+* GUILD_FACTION_TITLE_FRIENDLY_FEMALE
+* GUILD_FACTION_TITLE_HONORED_FEMALE
+* GUILD_FACTION_TITLE_REVERED_FEMALE
+* GUILD_IMPEACH_BUTTON_TEXT
+* GUILD_IMPEACH_POPUP_CONFIRM
+* GUILD_IMPEACH_POPUP_TEXT
+* GUILDBANK_UNLOCKTAB_FORMAT
+* HUNTER_TRACKING_TEXT
+* ITEM_LEVEL_ABBR
+* LOOT_ROLL_ROLLED_NEED_ROLE_BONUS
+* MAC_DISABLE_OS_SHORTCUTS
+* MAC_DISABLE_OS_SHORTCUTS_TOOLTIP
+* MAC_OPTIONS_MISC
+* MAC_SWAP_CONTROL_AND_COMMAND
+* MAC_SWAP_CONTROL_AND_COMMAND_TOOLTIP
+* MAP_OPTIONS_TEXT
+* MELEE_ATTACK_POWER_SPELL_POWER_TOOLTIP
+* MINIMAP_TRACKING_DIGSITES
+* MINIMAP_TRACKING_QUEST_POIS
+* NEWBIE_TOOLTIP_RAID_BROWSER
+* OPTION_TOOLTIP_ADVANCED_WORLD_MAP
+* OPTION_TOOLTIP_SHOW_ALL_ENEMY_DEBUFFS
+* PLAYERS_FOUND_OUT_OF_MAX
+* POWER_TYPE_REGENERATIVE_BLOOD
+* PVP_SUSPENDED_QUEUE_STATUS
+* RAID_FINDER
+* REFORGE_RESTORE_MESSAGE
+* REQ_LEVEL_ABBR
+* REQUIRES_GUILD_FACTION_TOOLTIP
+* RETRIEVING_INVITE_LIST
+* RETURN_TO_DEFAULT
+* ROTATE_LEFT
+* ROTATE_RIGHT
+* ROTATE_TOOLTIP
+* SCROLL_OF_RESURRECTION
+* SCROLL_OF_RESURRECTION_TOOLTIP
+* SEND_SCROLL_OF_RESURRECTION
+* SHOW_ALL_ENEMY_DEBUFFS_TEXT
+* SHOW_BOSSES_ON_MAP_TEXT
+* SKILL_ABBR
+* SLASH_CLEAR_WORLD_MARKER1
+* SLASH_CLEAR_WORLD_MARKER2
+* SLASH_CLEAR_WORLD_MARKER3
+* SLASH_CLEAR_WORLD_MARKER4
+* SLASH_RANDOM8
+* SLASH_TARGET_MARKER1
+* SLASH_TARGET_MARKER2
+* SLASH_TARGET_MARKER3
+* SLASH_TARGET_MARKER4
+* SLASH_WORLD_MARKER1
+* SLASH_WORLD_MARKER2
+* SLASH_WORLD_MARKER3
+* SLASH_WORLD_MARKER4
+* SLOT_ABBR
+* SPELL_POWER_ALTERNATE_POWER
+* STAT_AVERAGE_ITEM_LEVEL_EQUIPPED
+* STAT4_NOSPELLPOWER_TOOLTIP
+* TOWNSFOLK_TRACKING_TEXT
+* TRANSFER
+* TRANSMOGRIFIED
+* TRANSMOGRIFY
+* TRANSMOGRIFY_BIND_CONFIRMATION
+* TRANSMOGRIFY_INVALID_REASON1
+* TRANSMOGRIFY_INVALID_REASON2
+* TRANSMOGRIFY_INVALID_REASON3
+* TRANSMOGRIFY_INVALID_REASON4
+* TRANSMOGRIFY_INVALID_REASON5
+* TRANSMOGRIFY_TOOLTIP_APPLY
+* TRANSMOGRIFY_TOOLTIP_REVERT
+* UNDOCK_WINDOW
+* UNLEARN_SPECIALIZATION_TOOLTIP
+* UNLOCK_VOID_STORAGE
+* VOICECHAT_NO_64BIT_TEXT
+* VOID_STORAGE
+* VOID_STORAGE_DEPOSIT_CONFIRMATION
+* VOID_STORAGE_TUTORIAL1
+* VOID_STORAGE_TUTORIAL2
+* VOID_STORAGE_TUTORIAL3
+* VOID_STORAGE_TUTORIAL4
+* VOID_STORAGE_TUTORIAL5
+* VOID_STORAGE_WELCOME
+* VOID_STORAGE_WELCOME_TEXT
+
+h2. Globals removed:
+* ADVANCED_WORLD_MAP_TEXT
+* CLASS_TRAINER_SKILL_BUTTON_WIDTH
+* MAX_BATTLEFIELD_QUEUES
+* MAX_WORLD_PVP_QUEUES
+* PDFITEM_HEIGHT
+* PDFITEM_WIDTH
+* PDFITEM_XOFFSET
+* PDFITEM_YOFFSET
+* PDFITEMFLYOUT_BORDERWIDTH
+* PDFITEMFLYOUT_FIRST_SPECIAL_LOCATION
+* PDFITEMFLYOUT_HEIGHT
+* PDFITEMFLYOUT_IGNORESLOT_LOCATION
+* PDFITEMFLYOUT_ITEMS_PER_ROW
+* PDFITEMFLYOUT_MAXITEMS
+* PDFITEMFLYOUT_MULTIROW_BOTTOM_COORDS
+* PDFITEMFLYOUT_MULTIROW_BOTTOM_HEIGHT
+* PDFITEMFLYOUT_MULTIROW_MIDDLE_COORDS
+* PDFITEMFLYOUT_MULTIROW_MIDDLE_HEIGHT
+* PDFITEMFLYOUT_MULTIROW_TOP_COORDS
+* PDFITEMFLYOUT_MULTIROW_TOP_HEIGHT
+* PDFITEMFLYOUT_MULTIROW_WIDTH
+* PDFITEMFLYOUT_ONEROW_CENTER_COORDS
+* PDFITEMFLYOUT_ONEROW_CENTER_WIDTH
+* PDFITEMFLYOUT_ONEROW_HEIGHT
+* PDFITEMFLYOUT_ONEROW_LEFT_COORDS
+* PDFITEMFLYOUT_ONEROW_LEFT_WIDTH
+* PDFITEMFLYOUT_ONEROW_RIGHT_COORDS
+* PDFITEMFLYOUT_ONEROW_RIGHT_WIDTH
+* PDFITEMFLYOUT_ONESLOT_HEIGHT
+* PDFITEMFLYOUT_ONESLOT_LEFT_COORDS
+* PDFITEMFLYOUT_ONESLOT_LEFTWIDTH
+* PDFITEMFLYOUT_ONESLOT_RIGHT_COORDS
+* PDFITEMFLYOUT_ONESLOT_RIGHTWIDTH
+* PDFITEMFLYOUT_ONESLOT_WIDTH
+* PDFITEMFLYOUT_PLACEINBAGS_LOCATION
+* PDFITEMFLYOUT_UNIGNORESLOT_LOCATION
+* PDFITEMFLYOUT_WIDTH

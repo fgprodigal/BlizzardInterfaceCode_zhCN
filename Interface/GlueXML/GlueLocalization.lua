@@ -38,4 +38,6 @@ function LocalizeFrames()
 	-- fix the credits screen
 	CreditsArtInfo[3] = {};
 	CreditsArtInfo[3][1] = { file="ColdarraNexTGA", w=1024, h=512, offsetx=0, offsety=0, maxAlpha=0.7 };
+	
+	NEVER_SHOW_UPGRADE = true;
 end
